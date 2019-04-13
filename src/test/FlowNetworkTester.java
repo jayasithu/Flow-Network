@@ -31,22 +31,34 @@ public class FlowNetworkTester {
         System.out.println();
         FlowNetworkTester tester = new FlowNetworkTester();
 
-        int vertices = tester.getVertice(tester.in, "Enter Number Of Nodes : ");
-        edges = tester.getEdges(vertices);
-        FlowNetwork network = new FlowNetwork(vertices + 1);
+        int vertices = tester.getVertice(tester.in, "Enter Number Of Nodes : "); //getting the number of nodes
+        edges = tester.getEdges(vertices); //getting an array list of edges with their respective details
+        FlowNetwork network = new FlowNetwork(vertices + 1); //creating a flow network by passing the number of nodes as the argument
 
-
+        /*
+        adding the edges to the flow network from the
+        edges array list using a for loop
+         */
         for (FlowEdge e : edges) {
             network.addEdge(e);
         }
 
+
         System.out.println(network);
+
+        /*
+        Graphically displaying the Graph
+         */
         tester.displayGraph(vertices);
 
-       /*   FordFulkerson fd = new FordFulkerson(network,1,3);
-            System.out.println(fd.value());
-        */
+
     }
+
+    /*
+    This method prompts the user for the number of nodes,
+    validates the user input for the number of nodes and
+    returns the valid value for the number of nodes
+     */
 
     public int getVertice(Scanner in, String promptMessage) {
         int vertices;
@@ -54,30 +66,42 @@ public class FlowNetworkTester {
 
             System.out.println(promptMessage);
 
+            /*
+            validation for a non integer value
+             */
             while (!in.hasNextInt()) {
 
                 System.out.println("Invalid input please enter a " + "number within the range of 4 and 10");
 
                 in.next();
             }
-
             vertices = in.nextInt();
-            if (!(vertices >= 4 && vertices <= 10)) {
-                /*
+
+            /*
              * checking whether the number of vertices
              * is within the range of 4 and
              * 10 if not display error message
              */
+            if (!(vertices >= 4 && vertices <= 10)) {
+
                 System.out.println();
                 System.out.println("Invalid Input! please enter a number within the range of 4 and 10");
             }
 
-        } while (vertices < 4 || vertices > 10);                                     // to loop until a valid  Number is
-        // entered
+        } while (vertices < 4 || vertices > 10);   // loop until a valid value is entered
         return vertices;
     }
 
+    /*
+        This method prompts the user for the inputs required
+        for defining an edge and it loops until the user wants
+        to stop.
+        in each iteration a flow edge is created and added to
+        the edges array list once the user stops entering values
+        this method returns an array list of flow edges
+     */
     public ArrayList<FlowEdge> getEdges(int v) {
+
          edges = new ArrayList<>();
 
         do {
@@ -101,12 +125,21 @@ public class FlowNetworkTester {
         return edges;
     }
 
+    /*
+        This method prompts and  validates the user input for defining
+        the starting and ending nodes of an edge
+        returns the valid 'to' or 'from' value
+     */
+
     public int getVal(Scanner sc, String promptMessage, int v) {
         int val;
         do {
 
             System.out.println(promptMessage);
 
+             /*
+            validation for a non integer value
+             */
             while (!in.hasNextInt()) {
 
                 System.out.println("Invalid input please enter a " + "number within the range of 0 and " + (v-1));
@@ -115,29 +148,40 @@ public class FlowNetworkTester {
             }
 
             val = in.nextInt();
+
+            /*
+             * checking whether the from val or to val
+             * is within the range of 0 and
+             * v-1 if not display error message
+             */
+
             if (!(val >= 0 && val <= v-1)) {
-
-                /*
-                 * checking whether the from val or to val
-                 * is within the range of 0 and
-                 * v-1 if not display error message
-                 */
-
-                System.out.println();
+            System.out.println();
                 System.out.println("Invalid Input! please enter a number within the range of 0 and " + (v-1));
             }
 
-        } while (val < 0 || val > v-1);     /* to loop until a valid  Number is entered*/
+        } while (val < 0 || val > v-1);     //  loop until a valid  Number is entered
 
         return val;
     }
 
+
+     /*
+        This method prompts the user for the capacity of an edge
+        validates the user input  and
+        returns the validated value
+     */
 
     public double getCapacity(Scanner sc, String m) {
 
         double capacity;
         do {
             System.out.println(m);
+
+             /*
+            validation for a non integer value
+             */
+
             while (!in.hasNextInt()) {
 
                 System.out.println("Invalid input please enter a " + "number within the range of 5 and 20");
@@ -147,25 +191,26 @@ public class FlowNetworkTester {
 
             capacity = sc.nextDouble();
 
+            /*
+             * checking whether the capacity
+             * is within the range of 5 and
+             * 20 if not display error message
+             */
+
             if (!(capacity >= 5 && capacity <= 20)) {
-
-                /*
-                 * checking whether the capacity
-                 * is within the range of 5 and
-                 * 20 if not display error message
-                 */
-
                 System.out.println();
                 System.out.println("Invalid Input! please enter a number within the range of 5 and 20");
             }
-
-
-        } while (capacity < 5 || capacity > 20);
-
+        } while (capacity < 5 || capacity > 20);  // loop until a valid  Number is entered
 
         return capacity;
 
     }
+
+    /*
+    This method is used to graphically display the graph
+    JUNG library is used to display the graph
+     */
 
     public void displayGraph(int v) {
         Graph<Integer, FlowEdge> g = new SparseMultigraph<>();
