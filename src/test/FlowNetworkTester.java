@@ -94,7 +94,7 @@ public class FlowNetworkTester {
             FlowEdge edge = new FlowEdge(name, from, to, capacity);
             edges.add(edge);
             System.out.println("Do you want to define Another edge ?");
-            System.out.println("Press any key to Define more edges or press x to quit");
+            System.out.println("Press y to Define more edges or press x to view the Graph");
             continuePro = in.next().charAt(0);
         }while (continuePro != 'x');
 

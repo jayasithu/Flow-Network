@@ -32,8 +32,6 @@ public class FordFulkerson {
 
         }
 
-
-
     }
 
     private boolean hasArgumentingPath(FlowNetwork G, int s,int t){
@@ -59,16 +57,6 @@ public class FordFulkerson {
 
         return marked[t];
     }
-
-
-
-
-
-
-
-
-
-
 
     public double value(){
         return value;

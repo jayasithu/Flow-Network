@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FlowNetwork  {
     private final int V; // number of vertices
-    private List<FlowEdge>[] adj;
+    private List<FlowEdge>[] adj; //List of edges
 
     public FlowNetwork(int V) {
         this.V = V-1;
