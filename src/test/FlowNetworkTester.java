@@ -21,6 +21,7 @@ public class FlowNetworkTester {
 
     Scanner in = new Scanner(System.in);
     private static ArrayList<FlowEdge> edges;
+    char continuePro = 'x';
 
     public static void main(String[] args) {
 
@@ -61,7 +62,8 @@ public class FlowNetworkTester {
             }
 
             vertices = in.nextInt();
-            if (!(vertices >= 4 && vertices <= 10)) {                               /*
+            if (!(vertices >= 4 && vertices <= 10)) {
+                /*
              * checking whether the number of vertices
              * is within the range of 4 and
              * 10 if not display error message
@@ -78,8 +80,9 @@ public class FlowNetworkTester {
     public ArrayList<FlowEdge> getEdges(int v) {
         ArrayList<FlowEdge> edges = new ArrayList<>();
 
-
-        for (int i = 0; i < v; i++) {
+        do {
+            System.out.println("When Defining Edges please enter a value between 0 and "+(v-1));
+            System.out.println();
             System.out.println("Enter Edge Name : ");
             String name = in.nextLine();
             in.next();
@@ -90,7 +93,10 @@ public class FlowNetworkTester {
 
             FlowEdge edge = new FlowEdge(name, from, to, capacity);
             edges.add(edge);
-        }
+            System.out.println("Do you want to define Another edge ?");
+            System.out.println("Press any key to Define more edges or press x to quit");
+            continuePro = in.next().charAt(0);
+        }while (continuePro != 'x');
 
         return edges;
     }
@@ -103,13 +109,13 @@ public class FlowNetworkTester {
 
             while (!in.hasNextInt()) {
 
-                System.out.println("Invalid input please enter a " + "number within the range of 1 and " + v);
+                System.out.println("Invalid input please enter a " + "number within the range of 0 and " + (v-1));
 
                 in.next();
             }
 
             val = in.nextInt();
-            if (!(val >= 1 && val <= v)) {
+            if (!(val >= 1 && val <= v-1)) {
 
                 /*
                  * checking whether the number of vertices
@@ -118,10 +124,10 @@ public class FlowNetworkTester {
                  */
 
                 System.out.println();
-                System.out.println("Invalid Input! please enter a number within the range of 1 and " + v);
+                System.out.println("Invalid Input! please enter a number within the range of 0 and " + (v-1));
             }
 
-        } while (val < 1 || val > v);     /* to loop until a valid  Number is entered*/
+        } while (val < 1 || val > v-1);     /* to loop until a valid  Number is entered*/
 
         return val;
     }
