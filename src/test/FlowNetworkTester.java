@@ -78,7 +78,7 @@ public class FlowNetworkTester {
     }
 
     public ArrayList<FlowEdge> getEdges(int v) {
-        ArrayList<FlowEdge> edges = new ArrayList<>();
+         edges = new ArrayList<>();
 
         do {
             System.out.println("When Defining Edges please enter a value between 0 and "+(v-1));
@@ -115,19 +115,19 @@ public class FlowNetworkTester {
             }
 
             val = in.nextInt();
-            if (!(val >= 1 && val <= v-1)) {
+            if (!(val >= 0 && val <= v-1)) {
 
                 /*
-                 * checking whether the number of vertices
-                 * is within the range of 4 and
-                 * 10 if not display error message
+                 * checking whether the from val or to val
+                 * is within the range of 0 and
+                 * v-1 if not display error message
                  */
 
                 System.out.println();
                 System.out.println("Invalid Input! please enter a number within the range of 0 and " + (v-1));
             }
 
-        } while (val < 1 || val > v-1);     /* to loop until a valid  Number is entered*/
+        } while (val < 0 || val > v-1);     /* to loop until a valid  Number is entered*/
 
         return val;
     }
@@ -150,9 +150,9 @@ public class FlowNetworkTester {
             if (!(capacity >= 5 && capacity <= 20)) {
 
                 /*
-                 * checking whether the number of vertices
-                 * is within the range of 4 and
-                 * 10 if not display error message
+                 * checking whether the capacity
+                 * is within the range of 5 and
+                 * 20 if not display error message
                  */
 
                 System.out.println();
@@ -189,7 +189,8 @@ public class FlowNetworkTester {
             }
         };
 
-        final Stroke edgeStroke = new BasicStroke();
+        final Stroke edgeStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT,
+                BasicStroke.JOIN_MITER, 10.0f );
         Transformer<FlowEdge, Stroke> edgeStrokeTransformer =
                 new Transformer<>() {
                     public Stroke transform(FlowEdge s) {
