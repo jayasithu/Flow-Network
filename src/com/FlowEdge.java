@@ -58,10 +58,10 @@ public class FlowEdge {
     @Override
     public String toString() {
         return "FlowEdge{" +
-                "from=" + from +
-                ", to=" + to +
-                ", capacity=" + capacity +
-                ", flow=" + flow +
+                "Edge Name = " + edgeName +
+                "From = " + from +
+                ", To = " + to +
+                ", Capacity = " + capacity +
                 '}';
     }
 }
