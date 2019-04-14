@@ -49,9 +49,22 @@ public class FlowNetworkTester {
         /*
         Graphically displaying the Graph
          */
+
         tester.displayGraph(vertices);
 
+        /*
+        Calculating the Maximum Flow of the Graph using the FordFulkerson Algorithm
+         */
+        System.out.println("=================================================================================");
+        System.out.println("| To Calculate the Maximum Flow Please Define the Source node and the Sink node |");
+        System.out.println("=================================================================================");
+        System.out.println();
+        System.out.println("For The source and Sink Please enter Values between 0 and "+(vertices-1));
+        int source = tester.getVal(tester.in,"Enter the Source Node : ",vertices);
+        int sink = tester.getVal(tester.in,"Enter the Sink Node : ",vertices);
 
+        FordFulkerson maxFlow = new FordFulkerson(network,source,sink);
+        System.out.println("The Maximum Flow of the Graph : "+maxFlow.value());
     }
 
     /*

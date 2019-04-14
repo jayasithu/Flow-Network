@@ -25,7 +25,7 @@ public class FordFulkerson {
                 bottle = Math.min(bottle, edgeTo[v].residualCapacityTo(v));
             }
 
-            for (int v = t; v != s; v = edgeTo[v].other(v)) { //augment flow
+            for (int v = t; v != s; v = edgeTo[v].other(v)) {
                 edgeTo[v].addResidualFlowTo(v, bottle);
             }
             value += bottle;
