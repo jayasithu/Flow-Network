@@ -70,8 +70,14 @@ public class FlowNetworkTester {
         int source = tester.getVal(tester.in,"Enter the Source Node : ",vertices);
         int sink = tester.getVal(tester.in,"Enter the Sink Node : ",vertices);
 
+
         FordFulkerson maxFlow = new FordFulkerson(network,source,sink);
+
         System.out.println("The Maximum Flow of the Graph : "+maxFlow.value());
+        long time = maxFlow.getT2() - maxFlow.getT1()/1000;
+        System.out.println("Start Time : "+maxFlow.getT1());
+        System.out.println("End Time : "+maxFlow.getT2());
+        System.out.println("Time Taken to calculate Maximum flow : "+ time);
     }
 
     /*

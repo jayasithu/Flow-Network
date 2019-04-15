@@ -16,12 +16,15 @@ public class FordFulkerson {
     private boolean[] marked;
     private FlowEdge[] edgeTo;
     private double value;
+    private long t1;
+    private long t2;
 
     /*
     computes the maximum flow in the network
     from the source vertex to the sink
      */
     public FordFulkerson(FlowNetwork G, int s, int t){
+
         V = G.getV();
 
 
@@ -33,6 +36,7 @@ public class FordFulkerson {
         while (hasArgumentingPath(G, s, t)){
 
             //computing the bottleneck capacity
+            t1 = System.currentTimeMillis();
             double bottle = Double.POSITIVE_INFINITY;
             for (int v = t; v!=s; v = edgeTo[v].other(v)) {
                 bottle = Math.min(bottle, edgeTo[v].residualCapacityTo(v));
@@ -44,6 +48,7 @@ public class FordFulkerson {
             }
 
             value += bottle;
+           t2 = System.currentTimeMillis();
 
         }
 
@@ -93,4 +98,12 @@ public class FordFulkerson {
         return marked[v];
     }
 
+
+    public long getT1() {
+        return t1;
+    }
+
+    public long getT2() {
+        return t2;
+    }
 }
