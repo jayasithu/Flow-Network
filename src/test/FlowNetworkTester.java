@@ -84,6 +84,8 @@ public class FlowNetworkTester {
     This method prompts the user for the number of nodes,
     validates the user input for the number of nodes and
     returns the valid value for the number of nodes
+    1553753313639
+    1553753616571
      */
 
     public int getVertice(Scanner in, String promptMessage) {
