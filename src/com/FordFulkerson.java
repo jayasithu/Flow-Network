@@ -3,6 +3,13 @@ package com;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/*
+Name   : Jayasithu Hewavitharana
+UOW ID : w1673663
+IIT ID : 2017079
+ */
+
+
 public class FordFulkerson {
 
     private final int V;
@@ -10,6 +17,10 @@ public class FordFulkerson {
     private FlowEdge[] edgeTo;
     private double value;
 
+    /*
+    computes the maximum flow in the network
+    from the source vertex to the sink
+     */
     public FordFulkerson(FlowNetwork G, int s, int t){
         V = G.getV();
 
@@ -20,24 +31,37 @@ public class FordFulkerson {
 
         value = 0.0;
         while (hasArgumentingPath(G, s, t)){
+
+            //computing the bottleneck capacity
             double bottle = Double.POSITIVE_INFINITY;
             for (int v = t; v!=s; v = edgeTo[v].other(v)) {
                 bottle = Math.min(bottle, edgeTo[v].residualCapacityTo(v));
             }
 
+            //Augment flow
             for (int v = t; v != s; v = edgeTo[v].other(v)) {
                 edgeTo[v].addResidualFlowTo(v, bottle);
             }
+
             value += bottle;
 
         }
 
     }
 
+    /*
+     if there is an augmenting path upon termination edgeTo[] will
+     contain a parent-link representation of such a path
+     this implementation finds a shortest augmenting path (fewest number of edges),
+     which performs well both in theory and in practice
+     */
     private boolean hasArgumentingPath(FlowNetwork G, int s,int t){
         edgeTo = new FlowEdge[G.getV()];
         marked = new boolean[G.getV()];
 
+        /*
+        Performing the Breadth-First search
+         */
         Queue<Integer> q = new LinkedList<>();
         q.add(s);
         marked[s] = true;
@@ -46,6 +70,7 @@ public class FordFulkerson {
 
             for (FlowEdge e : G.adj(v)){
                 int w = e.other(v);
+
                 //found path from s to w in the residual network
                 if(e.residualCapacityTo(w) > 0 && !marked[w]){
                     edgeTo[w] = e;            //save last edge on path w
@@ -55,9 +80,11 @@ public class FordFulkerson {
             }
         }
 
+        //returns the boolean value for the existence of an augmenting path
         return marked[t];
     }
 
+    //returns the value of the maximum flow
     public double value(){
         return value;
     }

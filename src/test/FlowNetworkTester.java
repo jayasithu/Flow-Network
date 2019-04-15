@@ -1,5 +1,4 @@
 package test;
-
 import com.FlowEdge;
 import com.FlowNetwork;
 import com.FordFulkerson;
@@ -16,6 +15,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/*
+Name   : Jayasithu Hewavitharana
+UOW ID : w1673663
+IIT ID : 2017079
+ */
+
+
 
 public class FlowNetworkTester {
 
